@@ -16,7 +16,7 @@
     
     <!-- Header image -->
     <xsl:param name="header.image.filename"
-               select="concat($muk-xsl.dir, '/img/MarkupUK-2.svg')"/>
+               select="concat($muk-xsl.dir, '/img/da-logo-with-outlines.svg')"/>
     
     
     

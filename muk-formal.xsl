@@ -33,16 +33,20 @@
   <xsl:variable name="figure">
     <xsl:choose>
       <xsl:when test="@pgwide = '1'">
-      <xsl:call-template name="formal.object.heading">
-        <xsl:with-param name="placement" select="$placement"/>
-      </xsl:call-template>
+        <xsl:variable name="id">
+          <xsl:call-template name="object.id"/>
+        </xsl:variable>
+        <xsl:call-template name="formal.object.heading">
+          <xsl:with-param name="placement" select="$placement"/>
+        </xsl:call-template>
         <fo:float float="inside"
                   axf:float-reference="page"
                   axf:float-x="inside"
                   axf:float-move="keep">
           <fo:block-container text-align="inside" start-indent="0">
             <fo:block-container width="160mm">
-              <fo:block xsl:use-attribute-sets="pgwide.properties">
+              <fo:block id="{$id}"
+                xsl:use-attribute-sets="pgwide.properties">
                 <xsl:apply-templates />
               </fo:block>
             </fo:block-container>

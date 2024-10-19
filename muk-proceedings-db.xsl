@@ -89,6 +89,7 @@
     <xsl:param name="header.column.widths">5 0 2</xsl:param>
     <xsl:param name="footer.column.widths">5 1 1</xsl:param>
 
+    <xsl:param name="line-height">1.35</xsl:param>
     <xsl:attribute-set name="root.properties">
       <xsl:attribute name="font-size">10pt</xsl:attribute>
       <xsl:attribute name="text-align">start</xsl:attribute>
@@ -169,9 +170,10 @@
 
 
     <!-- Title Font Family -->
-    <xsl:param name="title.font.family">League Gothic, DejaVu Sans, sans-serif</xsl:param>
+    <xsl:param name="title.font.family">Iosevka Etoile, DejaVu Sans, sans-serif</xsl:param>
     <!-- Article titles are never centered. -->
     <xsl:attribute-set name="component.title.properties">
+      <xsl:attribute name="font-weight">bold</xsl:attribute>
         <xsl:attribute name="text-align">
             <xsl:choose>
                 <xsl:when test="((parent::articleinfo) and not(ancestor::book) and not(self::bibliography))
@@ -335,11 +337,11 @@
 
 
     <!-- Body Font -->
-    <xsl:param name="body.font.family">Liberation Sans, DejaVu Sans, sans-serif</xsl:param>
+    <xsl:param name="body.font.family">Iosevka Aile, Liberation Sans, DejaVu Sans, sans-serif</xsl:param>
     <xsl:param name="body.font.master" select="9"/>
 
     <!-- Programlisting Font -->
-    <xsl:param name="monospace.font.family">Liberation Mono, DejaVu Sans Mono, monospace</xsl:param>
+    <xsl:param name="monospace.font.family">Iosevka, Liberation Mono, DejaVu Sans Mono, monospace</xsl:param>
 
 
     <xsl:attribute-set name="footnote.properties">
@@ -467,7 +469,7 @@
         <xsl:attribute name="font-family">
             <xsl:value-of select="$title.font.family"/>
         </xsl:attribute>
-      <xsl:attribute name="font-weight">normal</xsl:attribute>
+      <xsl:attribute name="font-weight">600</xsl:attribute>
       <xsl:attribute name="text-align">start</xsl:attribute>
     </xsl:attribute-set>
 
@@ -574,6 +576,34 @@
 
     <xsl:template name="user.declarations">
       <fo:declarations>
+        <!-- https://github.com/be5invis/Iosevka/ -->
+        <axf:font-face
+            src="url('{$muk-xsl.dir}/iosevka/IosevkaAile-Regular.ttc')"
+            font-family="Iosevka Aile"
+            font-weight="normal" />
+        <axf:font-face
+            src="url('{$muk-xsl.dir}/iosevka/IosevkaAile-Bold.ttc')"
+            font-family="Iosevka Aile"
+            font-weight="bold" />
+        <axf:font-face
+            src="url('{$muk-xsl.dir}/iosevka/IosevkaEtoile-Regular.ttc')"
+            font-family="Iosevka Etoile" />
+        <axf:font-face
+            src="url('{$muk-xsl.dir}/iosevka/IosevkaEtoile-Medium.ttc')"
+            font-family="Iosevka Etoile"
+            font-weight="600"/>
+        <axf:font-face
+            src="url('{$muk-xsl.dir}/iosevka/IosevkaEtoile-Bold.ttc')"
+            font-family="Iosevka Etoile"
+            font-weight="bold" />
+        <axf:font-face
+            src="url('{$muk-xsl.dir}/iosevka/SGr-Iosevka-Regular.ttc')"
+            font-family="Iosevka"
+            font-weight="500" />
+        <axf:font-face
+            src="url('{$muk-xsl.dir}/iosevka/SGr-Iosevka-Bold.ttc')"
+            font-family="Iosevka"
+            font-weight="bold" />
         <!-- https://dejavu-fonts.github.io/ -->
         <axf:font-face
             src="url('{$muk-xsl.dir}/dejavu-fonts-ttf-2.37/ttf/DejaVuSans.ttf')"
@@ -639,7 +669,7 @@
               height="36mm">
             <fo:block
                 line-stacking-strategy="line-height" line-height="18mm" padding-top="{$muk.border-radius}" padding-bottom="{$muk.border-radius}" text-depth="0"
-                font-family="League Gothic, sans-serif"
+                font-family="Iosevka Etoile, sans-serif"
                 text-align="left" padding="10mm" color="rgb(59, 64, 99)"
                 axf:border-radius="{$muk.border-radius}" font-weight="normal"
                 font-size="11mm" background-color="{$muk.background}">
@@ -647,7 +677,7 @@
                   content-height="37mm" scaling="uniform"
                   content-width="scale-to-fit"
                   padding-left="-2.5mm"
-                  src="url({$muk-xsl.dir}/img/MarkupUK-2.svg)"
+                  src="url({$muk-xsl.dir}/img/da-logo-with-outlines.svg)"
                   axf:alttext="Markup UK"/>
         </fo:block>
           </fo:block-container>
@@ -708,7 +738,7 @@
               <fo:external-graphic
                   content-height="24.4mm" scaling="uniform"
                   content-width="scale-to-fit"
-                  src="url({$muk-xsl.dir}/img/MarkupUK-2.svg)"
+                  src="url({$muk-xsl.dir}/img/da-logo-with-outlines.svg)"
                   axf:alttext="Markup UK " />
               <fo:block />
               <xsl:variable
