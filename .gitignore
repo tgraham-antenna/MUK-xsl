@@ -1,3 +1,9 @@
+# Generated files.
+*-css.pdf
+*-nons.xml
+*.fo
+*.pdf
+
 # 'build-paths.xml' is regenerated every time Ant runs.
 build-paths.xml
 *.local.xml
